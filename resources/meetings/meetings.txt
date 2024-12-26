@@ -7,3 +7,6 @@ Dec 23, 2024 at 14:11 GMT+05:30 -- Environment Setup in local system using docke
 Dec 23, 2024 at 20:06 GMT+05:30 -- ContactUs Integration with Frontend
 Dec 24, 2024 at 16:42 GMT+05:30 -- Verified Smart ML feature
 Dec 25, 2024 at 10:14 GMT+05:30 -- Worker Node COnfiguration
+Dec 26, 2024 at 09:55 GMT+05:30 -- IoTConnect Integration Explanation
+Dec 26, 2024 at 11:59 GMT+05:30 -- Frontend Pullrequest with contactus 
+Dec 26, 2024 at 20:05 GMT+05:30 -- Trigger Service Work Allocation
