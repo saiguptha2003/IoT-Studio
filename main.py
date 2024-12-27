@@ -25,6 +25,10 @@ app.register_blueprint(TriggerBP,url_prefix='/Trigger')
 @app.route("/",methods=["GET"])
 def index():
     return {"message": "hello User.."}
+@app.route("/contact-us",methods=["GET"])
+def contactUs():
+    return {"Name": "V D Panduranga Sai Guptha", "Email":"saiguptha_v@srmap.edu.in"}
+    
 if __name__ == "__main__":
     import sys
     testing = "--test" in sys.argv
