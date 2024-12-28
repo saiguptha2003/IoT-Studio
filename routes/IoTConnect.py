@@ -1,9 +1,11 @@
 from datetime import datetime, timezone
+import json
+import logging
 import uuid
 from flask import Blueprint, jsonify, request
 from utils import token_required
 from utils import getUniqueID, cdb
-
+from cache import redisClient
 IoTConnectBP = Blueprint("IoTConnect", __name__)
 
 @IoTConnectBP.route("/createServiceConnect", methods=["POST"])
@@ -32,9 +34,11 @@ def createServicesConnect(userid, email, username):
         if connection_name in existing_names:
             return jsonify({"error": f"connection_name '{connection_name}' already exists"}), 409
 
-        userDoc['IoTConnect'].append(data)
+        userDoc['IoTConnect'].append(data)            
         cdb.save(userDoc)
-
+        if redisClient:
+            redisClient.set(userid, json.dumps(userDoc)) 
+            logging.info(redisClient.get(userid))
         return jsonify({
             "message": "Service connection created successfully.",
             "connection_id": data['connection_id'],

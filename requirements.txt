@@ -7,3 +7,4 @@ flask-cors
 pytz
 python-dotenv
 requests
+redis
