@@ -22,8 +22,9 @@ def createServicesConnect(userid, email, username):
 
         data['connection_id'] = str(uuid.uuid4())
         data['created_at'] =str(datetime.now(timezone.utc).timestamp())
-
-        userDoc = cdb.get(userid)
+        userDoc=json.loads(redisClient.get(userid))
+        if userDoc is None:
+            userDoc = cdb.get(userid)
         if not userDoc:
             return jsonify({"error": "User document not found"}), 404
 
@@ -51,7 +52,9 @@ def createServicesConnect(userid, email, username):
 @token_required
 def deleteServiceConnect(userid, email, username, connection_id):
     try:
-        userDoc = cdb.get(userid)
+        userDoc=json.loads(redisClient.get(userid))
+        if userDoc is None:
+            userDoc = cdb.get(userid)
         if not userDoc:
             return jsonify({"error": "User document not found"}), 404
 
@@ -68,7 +71,7 @@ def deleteServiceConnect(userid, email, username, connection_id):
             return jsonify({"error": f"No connection found with ID '{connection_id}'"}), 404
 
         cdb.save(userDoc)
-
+        redisClient.set(userid,json.dumps(userDoc))
         return jsonify({"message": f"Connection with ID '{connection_id}' deleted successfully"}), 200
 
     except Exception as e:
@@ -79,7 +82,9 @@ def deleteServiceConnect(userid, email, username, connection_id):
 @token_required
 def getConnectionById(userid, email, username, connection_id):
     try:
-        userDoc = cdb.get(userid)
+        userDoc = json.loads(redisClient.get(userid))
+        if not userDoc:
+            userDoc = cdb.get(userid)
         if not userDoc:
             return jsonify({"error": "User document not found"}), 404
         if 'IoTConnect' in userDoc:
@@ -96,7 +101,9 @@ def getConnectionById(userid, email, username, connection_id):
 @token_required
 def getAllIoTConnections(userid, email, username):
     try:
-        userDoc = cdb.get(userid)
+        userDoc = json.loads(redisClient.get(userid))
+        if not userDoc:
+            userDoc = cdb.get(userid)
         if not userDoc:
             return jsonify([]), 404
         iotConnections = userDoc.get('IoTConnect', [])

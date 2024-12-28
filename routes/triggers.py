@@ -8,6 +8,7 @@ from flask import Blueprint, jsonify, request
 from services import generateUUID, generateTokens
 from utils import token_required
 from utils import cdb
+from cache import redisClient
 import logging
 TriggerBP = Blueprint("TriggerBP", __name__)
 
