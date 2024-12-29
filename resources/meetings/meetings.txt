@@ -10,3 +10,4 @@ Dec 25, 2024 at 10:14 GMT+05:30 -- Worker Node COnfiguration
 Dec 26, 2024 at 09:55 GMT+05:30 -- IoTConnect Integration Explanation
 Dec 26, 2024 at 11:59 GMT+05:30 -- Frontend Pullrequest with contactus 
 Dec 26, 2024 at 20:05 GMT+05:30 -- Trigger Service Work Allocation
+Dec 29, 2024 at 11:32 GMT+05:30 -- MQTT Integration Discussion
